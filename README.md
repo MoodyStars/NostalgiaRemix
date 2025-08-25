@@ -1,4 +1,3 @@
-```markdown
 # Nostalgia Mody Videos Generator (Java Swing)
 
 A simple Java Swing GUI tool to generate brainstorming "plans" for nostalgia-style remix videos: YouTube Poop (YTP), YTPMV, remixes, loops, and short "annoying" edits. This generates textual plans (segment-by-segment ideas) that you can use to assemble videos in your editor (or extend to drive actual processing tools).
