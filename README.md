@@ -1,4 +1,3 @@
-```markdown
 # Nostalgia Mody Videos Generator - Starter
 
 This is a small JavaFX app that demonstrates how to build a simple GUI frontend that applies remix-style video transforms using ffmpeg. It is designed to be packaged with an Azul Zulu OpenJDK runtime (see "Packaging with Azul Zulu" below).
