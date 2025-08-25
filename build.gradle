@@ -1,0 +1,32 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = 'com.example.nostalgiamody.MainApp'
+}
+
+dependencies {
+    implementation 'org.openjfx:javafx-controls:17.0.8'
+}
+
+javafx {
+    version = "17.0.8"
+    modules = [ 'javafx.controls' ]
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs = ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
+}

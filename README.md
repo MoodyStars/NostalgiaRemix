@@ -1,34 +1,38 @@
-# Nostalgia Mody Videos Generator (Java Swing)
+```markdown
+# Nostalgia Mody Videos Generator - Starter
 
-A simple Java Swing GUI tool to generate brainstorming "plans" for nostalgia-style remix videos: YouTube Poop (YTP), YTPMV, remixes, loops, and short "annoying" edits. This generates textual plans (segment-by-segment ideas) that you can use to assemble videos in your editor (or extend to drive actual processing tools).
+This is a small JavaFX app that demonstrates how to build a simple GUI frontend that applies remix-style video transforms using ffmpeg. It is designed to be packaged with an Azul Zulu OpenJDK runtime (see "Packaging with Azul Zulu" below).
 
-Important: This program does NOT edit media. It produces a script/plan only.
+Features (starter):
+- Load a video file.
+- Speed up / slow down (basic).
+- Generate a simple randomized remix (extract random short clips and concat).
+- Apply a "round" circular mask demo (example ffmpeg filter).
+- "Annoying / faster" preset (speed + stutter demo).
+- All processing is performed by calling ffmpeg externally.
 
-Requirements
-- JDK 8+ (recommended Java 11+)
-- No external libraries required
+Requirements:
+- Java 17+ (Azul Zulu OpenJDK recommended).
+- ffmpeg available on PATH.
 
-Build & Run (simple)
-1. From repository root:
-   - Compile:
-     javac -d out src/main/java/com/moodystars/nostalgia/*.java
-   - Run:
-     java -cp out com.moodystars.nostalgia.Main
+Build:
+- Uses Gradle and JavaFX.
+- To build: `./gradlew build` (on Windows use `gradlew.bat`).
 
-2. Or use your IDE (IntelliJ IDEA, Eclipse) — import as a plain Java project and run Main.
+Packaging with Azul Zulu:
+1. Download Azul Zulu JDK for your platform (e.g. Zulu JDK 17+).
+   - https://www.azul.com/downloads/
+2. Set JAVA_HOME to the Azul Zulu JDK root.
+3. Use `jlink`/`jpackage` to create a runtime or installer. Example (mac/linux):
+   - Create runtime image:
+     `jlink --module-path $JAVA_HOME/jmods:build/libs --add-modules java.base,java.desktop,java.logging,javafx.controls --output runtime-image`
+   - Or build an installer with jpackage (Java 17+ jpackage available in the JDK):
+     `jpackage --name NostalgiaMody --input build/libs --main-jar nostalgia-mody.jar --runtime-image runtime-image --type dmg` (for mac)
+4. You can point jpackage to Azul Zulu's jdk so the packaged app uses Azul Zulu runtime.
 
-Usage
-- Toggle options: include YTP / YTPMV / Remix, Round/Loop segments, commercial insertion, and an "annoying" mode.
-- Adjust speed slider to suggest tempo changes.
-- Set number of segments to generate.
-- Click "Generate Plan" to create a textual plan.
-- Click "Export Plan..." to save the text file.
+Notes:
+- This project intentionally delegates heavy lifting to ffmpeg. That keeps the Java GUI simple while letting ffmpeg perform complex transforms.
+- To create YTPMV / remix effects you'll edit ffmpeg filter graphs in FFmpegProcessor.java.
 
-Extending this project
-- Integrate ffmpeg, TarsosDSP, or similar to implement actual audio/video processing.
-- Add presets for known YTP/YTPMV styles.
-- Save/load projects, export JSON for external tools.
-- Add sample bank management and mapping from plan to processing pipeline.
-
-License: Use as you like. This is a template / brainstorming tool; respect copyright for original media when creating actual remixes.
+License: adapt to your needs.
 ```
